@@ -1,0 +1,4 @@
+encoding: GB2312
+modifyLineBreaks:
+    textWrapOptions:
+        columns: 20

@@ -1,0 +1,109 @@
+\documentclass[UTF8]{ctexart}
+
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{subfigure}
+\usepackage[graphicx]{realboxes}
+
+
+\title{Dehazing Learning Note}
+\author{gsq}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\section{LaTeX using tips}
+
+Some tips when writing this article.
+
+\subsection{Document Organization}
+在文档类 article/ctexart 中，定义了五个控制序列来调整行文组织结构。他们分别是
+
+\begin{itemize}
+    \item section
+    \item subsection
+    \item subsubsection
+    \item paragraph
+    \item subparagraph
+\end{itemize}
+
+在report/ctexrep中，还有chapter；在文档类book/ctexbook中，还定义了part。
+
+
+\section{Dataset}
+
+\subsection{Day}
+
+
+
+\subsection{Night}
+
+\subsubsection{NHC~\cite{3r}}
+
+550 clear images were selected from Cityscapes to synthesize nighttime hazy images using 3R.
+We synthesized 5 images for each of them by changing the light positions and colors, 
+resulting in a total of 2,750 images, called “Nighttime Hazy Cityscapes” (NHC).
+We also altered the haze density by setting $\beta t$ to 0.005, 0.01, and 0.02,
+resulting in different datasets denoted NHC-L, NHC-M, and NHC-D, 
+where “L”, “M”, and “D” represent light haze, medium haze, and dense haze. 
+Further, we also modified the method by changing the constant yellow light color with our 
+randomly sampled real-world light colors described in Section 3.1 and synthesized images 
+on the Middlebury (70 images) and RESIDE (8,970 images) datasets.
+Similar to NHC, we augmented the Middlebury dataset by 5 times, resulting in a total
+of 350 images.
+They are denoted NHM and NHR, respectively.
+The statistics of these datasets are summarized in Table 1 in Section 6
+
+\begin{table}[]
+    \centering
+    \begin{tabular}{lllll}
+    \hline
+    Dataset & Haze Density & Number & Synthetic & Tasks \\ \hline
+    NHC-L   & Light        & 2750   & ✓         & ND+CR \\
+    NHC-M   & Medium       & 2750   & ✓         & ND    \\
+    NHC-D   & Dense        & 2750   & ✓         & ND    \\
+    NHM     & All          & 350    & ✓         & ND    \\
+    NHR     & All          & 8970   & ✓         & ND    \\
+    NHRW    & All          & 150    & x         & ND    \\
+    DCRW    & x            & 1500   & x         & CR    \\ \hline
+    \end{tabular}
+    \end{table}
+
+\begin{itemize}
+    \item NHC-M medium haze (2,750 images)
+    \item NHC-L light haze
+    \item NHC-D dense haze
+    \item NHM Middlebury (70 images)
+    \item NHR RESIDE (8,970 images)
+\end{itemize}
+
+\subsubsection{NightHaze \& YellowHaze~\cite{hdp}}
+We also provide the datasets adopted in the work:
+\begin{itemize}
+    \item Haze-Free
+    \item NightHaze-1
+    \item NightHaze-2
+    \item Haze-Free-Yellow
+    \item YellowHaze-1
+    \item YellowHaze-2
+\end{itemize}
+
+The initial size of images is not 128 x 128 but they are
+downsampled to smaller resolution before training.
+Dehazing effects may vary when a different dataset is trained.
+
+
+
+\begin{thebibliography}{8}
+    \bibitem{3r}
+    Zhang, Jing, et al. "Nighttime dehazing with a synthetic benchmark." Proceedings of the 28th ACM international conference on multimedia. 2020.
+
+    \bibitem{hdp}
+    Liao, Yinghong, et al. "Hdp-net: Haze density prediction network for nighttime dehazing." Pacific Rim Conference on Multimedia. Springer, Cham, 2018.
+
+\end{thebibliography}
+
+\end{document}
